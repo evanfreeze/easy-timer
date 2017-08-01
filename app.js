@@ -1,6 +1,6 @@
 const getTimerValue = () => document.getElementById('timerValue').innerText;
 const setTimerValue = newValue => document.getElementById('timerValue').innerText = newValue;
-
+let isRunning = false;
 const alterTimerValue = (direction, minutesToAlter) => {
   let currentTimerInt = parseInt(getTimerValue(), 10);
   if (direction === 'up') {
@@ -38,6 +38,7 @@ const updateCountdownTimerDisplay = (currentMsValue) => {
 }
 
 const startTimer = (startingValueInMiliSeconds) => {
+  isRunning = true;
   let timeRemaining = startingValueInMiliSeconds;
   toggleCountdownTimerDisplay();
   updateCountdownTimerDisplay(timeRemaining);
@@ -46,6 +47,7 @@ const startTimer = (startingValueInMiliSeconds) => {
     updateCountdownTimerDisplay(timeRemaining);
     if (timeRemaining === 0) {
       clearInterval(timer);
+      isRunning = false;
     }
   }, 1000);
 };
@@ -62,7 +64,9 @@ const handleKeyEvents = (event) => {
       }
       break;
     case 'Enter':
-      startTimer(convertMinutesToMs(currentTimerValue));
+      if (!isRunning) {
+        startTimer(convertMinutesToMs(currentTimerValue));
+      }
       break;
     default:
       break;
