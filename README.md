@@ -1,3 +1,3 @@
 ## Easy Timer
 
-A super quick timer that runs in the browser when you need one.
+For when you need a quick timer and you only have a web browser.
