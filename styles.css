@@ -1,0 +1,13 @@
+body {
+  font-family: sans-serif;
+}
+div {
+  margin: 0 auto;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h1 {
+  font-size: 10em;
+}
