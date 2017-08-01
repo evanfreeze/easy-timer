@@ -37,14 +37,20 @@ const updateCountdownTimerDisplay = (currentMsValue) => {
   document.getElementById('timerCountdown').innerText = convertMsToMinSecString(currentMsValue);
 }
 
+const updateTitleTimer = (currentTimeRemaining) => {
+  document.getElementsByTagName('TITLE')[0].innerText = `${convertMsToMinSecString(currentTimeRemaining)} - easytimer.co`;
+}
+
 const startTimer = (startingValueInMiliSeconds) => {
   isRunning = true;
   let timeRemaining = startingValueInMiliSeconds;
   toggleCountdownTimerDisplay();
   updateCountdownTimerDisplay(timeRemaining);
+  updateTitleTimer(timeRemaining);
   let timer = setInterval(() => {
     timeRemaining -= 1000;
     updateCountdownTimerDisplay(timeRemaining);
+    updateTitleTimer(timeRemaining);
     if (timeRemaining === 0) {
       clearInterval(timer);
       isRunning = false;
